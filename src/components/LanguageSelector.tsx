@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Globe, Check, ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface Language {
   code: string;
@@ -47,7 +48,7 @@ interface Language {
   };
 }
 
-const languages: Language[] = [
+export const languages: Language[] = [
   { 
     code: 'en',
     name: 'English',
@@ -184,16 +185,15 @@ const languages: Language[] = [
 
 const LanguageSelector: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+  const { language, setLanguage } = useLanguage();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleLanguageSelect = (language: Language) => {
-    setSelectedLanguage(language);
+  const handleLanguageSelect = (newLanguage: Language) => {
+    setLanguage(newLanguage);
     setIsOpen(false);
-    // Here you would also update your i18n context/state
   };
 
   return (
@@ -204,8 +204,8 @@ const LanguageSelector: React.FC = () => {
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
-        <span className="text-lg">{selectedLanguage.flag}</span>
-        <span className="hidden sm:inline font-medium">{selectedLanguage.code.toUpperCase()}</span>
+        <span className="text-lg">{language.flag}</span>
+        <span className="hidden sm:inline font-medium">{language.code.toUpperCase()}</span>
         <ChevronDown className="h-4 w-4" />
       </button>
 
@@ -222,13 +222,13 @@ const LanguageSelector: React.FC = () => {
             aria-labelledby="language-menu"
           >
             <div className="py-1" role="none">
-              {languages.map((language) => (
+              {languages.map((lang) => (
                 <button
-                  key={language.code}
-                  onClick={() => handleLanguageSelect(language)}
+                  key={lang.code}
+                  onClick={() => handleLanguageSelect(lang)}
                   className={`
                     w-full text-left px-4 py-2 text-sm flex items-center justify-between
-                    ${selectedLanguage.code === language.code
+                    ${language.code === lang.code
                       ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
                       : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                     }
@@ -236,10 +236,10 @@ const LanguageSelector: React.FC = () => {
                   role="menuitem"
                 >
                   <div className="flex items-center">
-                    <span className="text-lg mr-2">{language.flag}</span>
-                    <span>{language.nativeName}</span>
+                    <span className="text-lg mr-2">{lang.flag}</span>
+                    <span>{lang.nativeName}</span>
                   </div>
-                  {selectedLanguage.code === language.code && (
+                  {language.code === lang.code && (
                     <Check className="h-4 w-4 text-primary-600 dark:text-primary-500" />
                   )}
                 </button>
