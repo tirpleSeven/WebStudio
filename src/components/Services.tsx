@@ -2,102 +2,15 @@ import React, { useState } from 'react';
 import { Code, Palette, BarChart, Globe, Server, Smartphone, PenTool, Lock, Plus } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
-interface Service {
-  id: number;
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-  features: string[];
-}
-
-const services: Service[] = [
-  {
-    id: 1,
-    title: 'Web Design',
-    description: 'Custom designs that make your brand stand out with modern aesthetics and user-friendly interfaces.',
-    icon: <Palette className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
-    features: [
-      'Responsive layouts for all devices',
-      'UI/UX design with user research',
-      'Brand-aligned visual identity',
-      'Wireframing and prototyping',
-      'Accessibility compliance'
-    ]
-  },
-  {
-    id: 2,
-    title: 'Web Development',
-    description: 'Fast, responsive, and reliable websites built with modern technologies and best practices.',
-    icon: <Code className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
-    features: [
-      'Frontend development (React, Vue, Angular)',
-      'Backend development (Node.js, PHP, Python)',
-      'Database design and management',
-      'API development and integration',
-      'Performance optimization'
-    ]
-  },
-  {
-    id: 3,
-    title: 'E-Commerce Solutions',
-    description: 'Secure and intuitive online stores that drive sales and provide great shopping experiences.',
-    icon: <BarChart className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
-    features: [
-      'Custom e-commerce platforms',
-      'Shopping cart and checkout systems',
-      'Payment gateway integration',
-      'Inventory management',
-      'Mobile shopping experiences'
-    ]
-  },
-  {
-    id: 4,
-    title: 'SEO Optimization',
-    description: 'Improve your search rankings and drive more organic traffic to your website.',
-    icon: <Globe className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
-    features: [
-      'Keyword research and strategy',
-      'On-page and technical SEO',
-      'Content optimization',
-      'Performance improvement',
-      'SEO analytics and reporting'
-    ]
-  },
-  {
-    id: 5,
-    title: 'Backend Solutions',
-    description: 'Robust server-side applications and APIs that power your digital products.',
-    icon: <Server className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
-    features: [
-      'Custom API development',
-      'Database design and optimization',
-      'Cloud infrastructure setup',
-      'Serverless functions',
-      'Authentication and authorization'
-    ]
-  },
-  {
-    id: 6,
-    title: 'Mobile Apps',
-    description: 'Native and cross-platform mobile applications that engage users on the go.',
-    icon: <Smartphone className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
-    features: [
-      'iOS and Android development',
-      'React Native & Flutter solutions',
-      'Mobile UI/UX design',
-      'App Store optimization',
-      'Push notifications integration'
-    ]
-  }
-];
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Services: React.FC = () => {
-  const [activeService, setActiveService] = useState<Service | null>(null);
+  const [activeService, setActiveService] = useState<number | null>(null);
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+  const { language } = useLanguage();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -114,6 +27,15 @@ const Services: React.FC = () => {
     visible: { y: 0, opacity: 1, transition: { duration: 0.5 } },
   };
 
+  const serviceIcons = [
+    <Palette className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
+    <Code className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
+    <BarChart className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
+    <Globe className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
+    <Server className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
+    <Smartphone className="h-6 w-6 text-primary-600 dark:text-primary-500" />
+  ];
+
   return (
     <section id="services" className="section bg-white dark:bg-gray-900">
       <div className="container">
@@ -124,7 +46,7 @@ const Services: React.FC = () => {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
           >
-            Our Services
+            {language.content.services.title}
           </motion.h2>
           <motion.p 
             className="section-subtitle"
@@ -132,7 +54,7 @@ const Services: React.FC = () => {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Comprehensive web solutions tailored to your business needs
+            {language.content.services.subtitle}
           </motion.p>
         </div>
 
@@ -143,20 +65,20 @@ const Services: React.FC = () => {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          {services.map((service) => (
+          {language.content.services.items.map((service, index) => (
             <motion.div 
-              key={service.id}
+              key={index}
               variants={itemVariants}
               className="card card-hover p-6 flex flex-col"
-              onClick={() => setActiveService(service)}
+              onClick={() => setActiveService(index)}
             >
               <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full w-fit mb-5">
-                {service.icon}
+                {serviceIcons[index]}
               </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{service.title}</h3>
               <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">{service.description}</p>
               <button
-                onClick={() => setActiveService(service)}
+                onClick={() => setActiveService(index)}
                 className="flex items-center text-primary-600 dark:text-primary-500 hover:text-primary-700 dark:hover:text-primary-400 font-medium transition-colors mt-auto"
               >
                 Learn More 
@@ -167,7 +89,7 @@ const Services: React.FC = () => {
         </motion.div>
 
         {/* Service Detail Modal */}
-        {activeService && (
+        {activeService !== null && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
@@ -179,9 +101,11 @@ const Services: React.FC = () => {
                 <div className="flex justify-between items-start mb-6">
                   <div className="flex items-center">
                     <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full mr-4">
-                      {activeService.icon}
+                      {serviceIcons[activeService]}
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{activeService.title}</h3>
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                      {language.content.services.items[activeService].title}
+                    </h3>
                   </div>
                   <button 
                     onClick={() => setActiveService(null)}
@@ -194,11 +118,13 @@ const Services: React.FC = () => {
                   </button>
                 </div>
                 
-                <p className="text-gray-600 dark:text-gray-300 mb-6">{activeService.description}</p>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                  {language.content.services.items[activeService].description}
+                </p>
                 
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">What We Offer:</h4>
                 <ul className="space-y-3 mb-6">
-                  {activeService.features.map((feature, index) => (
+                  {language.content.services.items[activeService].features.map((feature, index) => (
                     <li key={index} className="flex items-start">
                       <Check className="h-5 w-5 text-primary-600 dark:text-primary-500 mr-2 flex-shrink-0 mt-0.5" />
                       <span className="text-gray-600 dark:text-gray-300">{feature}</span>

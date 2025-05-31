@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { useForm } from 'react-hook-form';
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { useLanguage } from '../contexts/LanguageContext';
 
 type FormData = {
   name: string;
@@ -19,11 +20,12 @@ const Contact: React.FC = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+  const { language } = useLanguage();
 
   const onSubmit = (data: FormData) => {
     console.log(data);
     // Here you would typically send the form data to your backend
-    toast.success('Message sent successfully! We\'ll get back to you soon.');
+    toast.success(language.content.contact.form.success);
     reset();
   };
 
@@ -52,7 +54,7 @@ const Contact: React.FC = () => {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
           >
-            Get In Touch
+            {language.content.contact.title}
           </motion.h2>
           <motion.p 
             className="section-subtitle"
@@ -60,7 +62,7 @@ const Contact: React.FC = () => {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Have a project in mind? Let's discuss how we can help
+            {language.content.contact.subtitle}
           </motion.p>
         </div>
 
@@ -85,7 +87,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div className="ml-4">
                     <h4 className="text-sm font-medium text-gray-900 dark:text-white">Phone</h4>
-                    <p className="mt-1 text-gray-600 dark:text-gray-300">(123) 456-7890</p>
+                    <p className="mt-1 text-gray-600 dark:text-gray-300">{language.content.contact.info.phone}</p>
                   </div>
                 </div>
                 
@@ -95,7 +97,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div className="ml-4">
                     <h4 className="text-sm font-medium text-gray-900 dark:text-white">Email</h4>
-                    <p className="mt-1 text-gray-600 dark:text-gray-300">contact@webstudio.com</p>
+                    <p className="mt-1 text-gray-600 dark:text-gray-300">{language.content.contact.info.email}</p>
                   </div>
                 </div>
                 
@@ -105,16 +107,13 @@ const Contact: React.FC = () => {
                   </div>
                   <div className="ml-4">
                     <h4 className="text-sm font-medium text-gray-900 dark:text-white">Office</h4>
-                    <p className="mt-1 text-gray-600 dark:text-gray-300">
-                      123 Web Street<br />
-                      San Francisco, CA 94103
-                    </p>
+                    <p className="mt-1 text-gray-600 dark:text-gray-300">{language.content.contact.info.address}</p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-8">
-                <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-4">Follow Us</h4>
+                <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-4">{language.content.contact.social.follow}</h4>
                 <div className="flex space-x-4">
                   <a 
                     href="#" 
@@ -167,24 +166,24 @@ const Contact: React.FC = () => {
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="label">Full Name</label>
+                    <label htmlFor="name" className="label">{language.content.contact.form.name}</label>
                     <input
                       id="name"
                       type="text"
                       className={`input ${errors.name ? 'border-error-500 focus:border-error-500 focus:ring-error-500' : ''}`}
-                      placeholder="John Doe"
+                      placeholder={language.content.contact.form.name}
                       {...register('name', { required: 'Name is required' })}
                     />
                     {errors.name && <p className="mt-1 text-sm text-error-600">{errors.name.message}</p>}
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="label">Email Address</label>
+                    <label htmlFor="email" className="label">{language.content.contact.form.email}</label>
                     <input
                       id="email"
                       type="email"
                       className={`input ${errors.email ? 'border-error-500 focus:border-error-500 focus:ring-error-500' : ''}`}
-                      placeholder="john@example.com"
+                      placeholder={language.content.contact.form.email}
                       {...register('email', { 
                         required: 'Email is required',
                         pattern: {
@@ -199,23 +198,23 @@ const Contact: React.FC = () => {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="phone" className="label">Phone Number</label>
+                    <label htmlFor="phone" className="label">{language.content.contact.form.phone}</label>
                     <input
                       id="phone"
                       type="tel"
                       className="input"
-                      placeholder="(123) 456-7890"
+                      placeholder={language.content.contact.form.phone}
                       {...register('phone')}
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="subject" className="label">Subject</label>
+                    <label htmlFor="subject" className="label">{language.content.contact.form.subject}</label>
                     <input
                       id="subject"
                       type="text"
                       className={`input ${errors.subject ? 'border-error-500 focus:border-error-500 focus:ring-error-500' : ''}`}
-                      placeholder="Project Inquiry"
+                      placeholder={language.content.contact.form.subject}
                       {...register('subject', { required: 'Subject is required' })}
                     />
                     {errors.subject && <p className="mt-1 text-sm text-error-600">{errors.subject.message}</p>}
@@ -223,12 +222,12 @@ const Contact: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="label">Message</label>
+                  <label htmlFor="message" className="label">{language.content.contact.form.message}</label>
                   <textarea
                     id="message"
                     rows={5}
                     className={`input ${errors.message ? 'border-error-500 focus:border-error-500 focus:ring-error-500' : ''}`}
-                    placeholder="Tell us about your project..."
+                    placeholder={language.content.contact.form.message}
                     {...register('message', { required: 'Message is required' })}
                   ></textarea>
                   {errors.message && <p className="mt-1 text-sm text-error-600">{errors.message.message}</p>}
@@ -241,7 +240,7 @@ const Contact: React.FC = () => {
                     type="submit"
                     className="btn btn-primary flex items-center"
                   >
-                    Send Message
+                    {language.content.contact.form.submit}
                     <Send className="ml-2 h-4 w-4" />
                   </motion.button>
                 </div>

@@ -2,58 +2,23 @@ import React from 'react';
 import { FileCode2, Workflow, PenSquare, ListChecks, Rocket, MessageSquare } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
-interface ProcessStep {
-  id: number;
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-}
-
-const processSteps: ProcessStep[] = [
-  {
-    id: 1,
-    title: 'Discovery',
-    description: 'We start by understanding your business, goals, and target audience to create a solid foundation for your project.',
-    icon: <MessageSquare className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
-  },
-  {
-    id: 2,
-    title: 'Strategy & Planning',
-    description: 'We develop a comprehensive plan including site architecture, content strategy, and technical requirements.',
-    icon: <Workflow className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
-  },
-  {
-    id: 3,
-    title: 'Design',
-    description: 'Our designers create beautiful, intuitive interfaces that reflect your brand and enhance user experience.',
-    icon: <PenSquare className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
-  },
-  {
-    id: 4,
-    title: 'Development',
-    description: 'We build your website using modern technologies and best practices for performance and security.',
-    icon: <FileCode2 className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
-  },
-  {
-    id: 5,
-    title: 'Testing & Review',
-    description: 'Rigorous testing ensures your website works flawlessly across all devices, browsers, and user scenarios.',
-    icon: <ListChecks className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
-  },
-  {
-    id: 6,
-    title: 'Launch & Support',
-    description: 'We handle the deployment and provide ongoing support to ensure your website continues to perform optimally.',
-    icon: <Rocket className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
-  },
-];
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Process: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+  const { language } = useLanguage();
+
+  const processIcons = [
+    <MessageSquare className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
+    <Workflow className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
+    <PenSquare className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
+    <FileCode2 className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
+    <ListChecks className="h-6 w-6 text-primary-600 dark:text-primary-500" />,
+    <Rocket className="h-6 w-6 text-primary-600 dark:text-primary-500" />
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -80,7 +45,7 @@ const Process: React.FC = () => {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
           >
-            Our Process
+            {language.content.process.title}
           </motion.h2>
           <motion.p 
             className="section-subtitle"
@@ -88,7 +53,7 @@ const Process: React.FC = () => {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            How we transform your ideas into successful digital products
+            {language.content.process.subtitle}
           </motion.p>
         </div>
 
@@ -99,18 +64,18 @@ const Process: React.FC = () => {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          {processSteps.map((step) => (
+          {language.content.process.steps.map((step, index) => (
             <motion.div 
-              key={step.id}
+              key={index}
               variants={itemVariants}
               className="relative"
             >
               <div className="card p-6 h-full flex flex-col">
                 <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-primary-600 dark:bg-primary-700 flex items-center justify-center text-white font-bold shadow-lg">
-                  {step.id}
+                  {index + 1}
                 </div>
                 <div className="mt-6 mb-4">
-                  {step.icon}
+                  {processIcons[index]}
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{step.title}</h3>
                 <p className="text-gray-600 dark:text-gray-300">{step.description}</p>
