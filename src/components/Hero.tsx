@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Hero: React.FC = () => {
+  const { language } = useLanguage();
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -47,15 +50,14 @@ const Hero: React.FC = () => {
             variants={itemVariants}
             className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white tracking-tight"
           >
-            Transform Your <span className="text-primary-600 dark:text-primary-500">Digital Presence</span> With Beautiful Websites
+            <span className="text-primary-600 dark:text-primary-500">{language.content.hero.title}</span>
           </motion.h1>
           
           <motion.p 
             variants={itemVariants}
             className="mt-6 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
           >
-            We create stunning, responsive websites that help your business stand out. 
-            From concept to launch, we're with you every step of the way.
+            {language.content.hero.subtitle}
           </motion.p>
           
           <motion.div 
@@ -66,14 +68,14 @@ const Hero: React.FC = () => {
               href="#portfolio" 
               className="btn btn-primary text-base sm:text-lg px-8 py-4"
             >
-              View Our Work
+              {language.content.hero.cta.primary}
               <ArrowRight className="ml-2 h-5 w-5" />
             </a>
             <a 
               href="#services" 
               className="btn btn-outline text-base sm:text-lg px-8 py-4"
             >
-              Explore Services
+              {language.content.hero.cta.secondary}
             </a>
           </motion.div>
         </motion.div>
