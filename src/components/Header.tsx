@@ -3,10 +3,12 @@ import { Menu, X, Globe, BarChart3 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 import LanguageSelector from './LanguageSelector';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,12 +24,12 @@ const Header: React.FC = () => {
   };
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Services', href: '#services' },
-    { name: 'Process', href: '#process' },
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Contact', href: '#contact' },
+    { name: language.content.header.nav.home, href: '#home' },
+    { name: language.content.header.nav.services, href: '#services' },
+    { name: language.content.header.nav.process, href: '#process' },
+    { name: language.content.header.nav.portfolio, href: '#portfolio' },
+    { name: language.content.header.nav.testimonials, href: '#testimonials' },
+    { name: language.content.header.nav.contact, href: '#contact' },
   ];
 
   return (
@@ -44,7 +46,9 @@ const Header: React.FC = () => {
           <div className="flex-shrink-0 flex items-center">
             <a href="#" className="flex items-center gap-2">
               <BarChart3 className="h-8 w-8 text-primary-600 dark:text-primary-500" />
-              <span className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">WebStudio</span>
+              <span className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">
+                {language.content.header.logo}
+              </span>
             </a>
           </div>
 
@@ -70,7 +74,7 @@ const Header: React.FC = () => {
               href="#contact" 
               className="btn btn-primary whitespace-nowrap"
             >
-              Get in Touch
+              {language.content.header.cta}
             </a>
           </div>
 
@@ -121,7 +125,7 @@ const Header: React.FC = () => {
                     onClick={() => setIsMenuOpen(false)}
                     className="btn btn-primary"
                   >
-                    Get in Touch
+                    {language.content.header.cta}
                   </a>
                 </div>
               </div>
