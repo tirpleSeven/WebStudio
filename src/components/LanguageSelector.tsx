@@ -678,3 +678,5 @@ export const languages: Language[] = [
     }
   }
 ]
+
+export default languages
