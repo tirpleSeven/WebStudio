@@ -265,6 +265,30 @@ export const languages: Language[] = [
             name: 'Sarah Johnson',
             role: 'Marketing Director',
             company: 'TechCorp Inc.'
+          },
+          {
+            content: 'The e-commerce platform they built for us has transformed our business. The user experience is seamless, and our sales have increased by 150% since launch. Their attention to detail and technical expertise is outstanding.',
+            name: 'Michael Chen',
+            role: 'CEO',
+            company: 'StyleHub'
+          },
+          {
+            content: 'Their SEO optimization services have put us on the map. We\'ve seen a dramatic increase in organic traffic and our search rankings have improved significantly. The team is professional, responsive, and delivers results.',
+            name: 'Emily Rodriguez',
+            role: 'Digital Marketing Manager',
+            company: 'GrowthWise'
+          },
+          {
+            content: 'The mobile app they developed for our healthcare service has received outstanding feedback from users. The interface is intuitive, and the performance is exceptional. They truly understand how to create user-friendly solutions.',
+            name: 'Dr. James Wilson',
+            role: 'Chief Innovation Officer',
+            company: 'HealthConnect'
+          },
+          {
+            content: 'From concept to execution, their process was smooth and professional. They transformed our outdated website into a modern, responsive platform that perfectly represents our brand. Highly recommended!',
+            name: 'Lisa Thompson',
+            role: 'Operations Director',
+            company: 'InnovateX'
           }
         ]
       },
@@ -456,6 +480,18 @@ export const languages: Language[] = [
             name: 'Сара Джонсон',
             role: 'Директор по маркетингу',
             company: 'TechCorp Inc.'
+          },
+          {
+            content: 'Разработанный ими интернет-магазин полностью преобразил наш бизнес. Интерфейс интуитивно понятен, а продажи выросли на 200% после запуска. Их внимание к деталям впечатляет.',
+            name: 'Андрей Волков',
+            role: 'Генеральный директор',
+            company: 'ТехноМаркет'
+          },
+          {
+            content: 'Мы очень довольны разработанным мобильным приложением. Команда продемонстрировала высокий профессионализм и техническую экспертизу. Все сроки были соблюдены, а результат превзошел ожидания.',
+            name: 'Елена Петрова',
+            role: 'Руководитель проектов',
+            company: 'МобильПлюс'
           }
         ]
       },
@@ -626,123 +662,4 @@ export const languages: Language[] = [
           {
             title: 'Ժամանակակից E-commerce Հարթակ',
             description: 'Լիովին հարմարեցվող էլեկտրոնային առևտրի կայք՝ ընդլայնված զտման, որոնման և վճարման հնարավորություններով:',
-            longDescription: 'Մենք նախագծել և մշակել ենք ժամանակակից էլեկտրոնային առևտրի հարթակ, որը թույլ է տալիս հեշտությամբ դիտել ապրանքները, կատարել ընդլայնված զտում և ունի պարզեցված վճարման գործընթաց: Հարթակը ներառում է պահեստի կառավարում, պատվերների հետևում և վերլուծական վահանակներ հաճախորդի համար:',
-            features: [
-              'Հարմարեցվող դիզայն բոլոր սարքերի համար',
-              'Ընդլայնված ապրանքների զտում և որոնում',
-              'Անվտանգ վճարումների մշակում',
-              'Հաճախորդների հաշիվների կառավարում',
-              'Պատվերների հետևում և պատմություն',
-              'Ադմինի վահանակ պահեստի կառավարման համար'
-            ]
-          }
-        ]
-      },
-      testimonials: {
-        title: 'Հաճախորդների Կարծիքներ',
-        subtitle: 'Տեսեք, թե ինչ են ասում մեր հաճախորդները մեր աշխատանքի մասին',
-        items: [
-          {
-            content: 'Այս թիմի հետ աշխատելը փոխեց մեր առցանց ներկայությունը: Նրանք ժամանակ տրամադրեցին մեր բրենդը և նպատակները հասկանալուն, այնուհետև ստեղծեցին կայք, որը գերազանցեց մեր սպասելիքները: Կոնվերսիայի աճը խոսում է ինքն իր մասին:',
-            name: 'Սառա Ջոնսոն',
-            role: 'Մարքեթինգի տնօրեն',
-            company: 'TechCorp Inc.'
-          
-          }
-        ]
-      },
-      contact: {
-        title: 'Կապ Հաստատեք',
-        subtitle: 'Ունե՞ք նախագիծ մտքում: Եկեք քննարկենք, թե ինչպես կարող ենք օգնել',
-        info: {
-          phone: '(123) 456-7890',
-          email: 'contact@webstudio.com',
-          address: '123 Web Street, Սան Ֆրանցիսկո, CA 94103'
-        },
-        form: {
-          name: 'Անուն Ազգանուն',
-          email: 'Էլ․ հասցե',
-          phone: 'Հեռախոսահամար',
-          subject: 'Թեմա',
-          message: 'Հաղորդագրություն',
-          submit: 'Ուղարկել',
-          success: 'Հաղորդագրությունն ուղարկված է: Մենք շուտով կկապվենք ձեզ հետ:'
-        },
-        social: {
-          follow: 'Հետևեք Մեզ'
-        }
-      }
-    }
-  }
-];
-
-const LanguageSelector: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { language, setLanguage } = useLanguage();
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleLanguageSelect = (newLanguage: Language) => {
-    setLanguage(newLanguage);
-    setIsOpen(false);
-  };
-
-  return (
-    <div className="relative">
-      <button
-        onClick={toggleDropdown}
-        className="flex items-center space-x-1 p-2 rounded-md text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-200"
-        aria-expanded={isOpen}
-        aria-haspopup="true"
-      >
-        <span className="text-lg">{language.flag}</span>
-        <span className="hidden sm:inline font-medium">{language.code.toUpperCase()}</span>
-        <ChevronDown className="h-4 w-4" />
-      </button>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.2 }}
-            className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 z-10"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="language-menu"
-          >
-            <div className="py-1" role="none">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  onClick={() => handleLanguageSelect(lang)}
-                  className={`
-                    w-full text-left px-4 py-2 text-sm flex items-center justify-between
-                    ${language.code === lang.code
-                      ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
-                    }
-                  `}
-                  role="menuitem"
-                >
-                  <div className="flex items-center">
-                    <span className="text-lg mr-2">{lang.flag}</span>
-                    <span>{lang.nativeName}</span>
-                  </div>
-                  {language.code === lang.code && (
-                    <Check className="h-4 w-4 text-primary-600 dark:text-primary-500" />
-                  )}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-
-export default LanguageSelector;
+            longDescription: 'Մենք նախագծել և մշակել ենք ժամանակակից էլեկտրոնային առևտրի հարթակ, որը թույլ է տալիս հեշտությամբ դիտել ապրանքները, կատարել ընդլայնված զտում և ունի պարզեցված վճարման գործընթաց: Հարթակը ներառում է պահեստի կառավարում, պատվերների հ
