@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { languages } from '../components/LanguageSelector';
+import languages from '../components/LanguageSelector';
 
 type Language = typeof languages[0];
 
