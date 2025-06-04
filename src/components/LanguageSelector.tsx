@@ -3,7 +3,7 @@ import { Globe, Check, ChevronDown } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 
-interface Language {
+export interface Language {
   code: string;
   name: string;
   nativeName: string;
@@ -662,6 +662,7 @@ export const languages: Language[] = [
           {
             title: 'Ժամանակակից E-commerce Հարթակ',
             description: 'Լիովին հարմարեցվող էլեկտրոնային առևտրի կայք՝ ընդլայնված զտման, որոնման և վճարման հնարավորություններով:',
+            longDescription: 'Մենք նախագծել և մշակել ենք ժամանակակից էլեկտրոնային առևտ
             longDescription: 'Մենք նախագծել և մշակել ենք ժամանակակից էլեկտրոնային առևտրի հարթակ, որը թույլ է տալիս հեշտությամբ դիտել ապրանքները, կատարել ընդլայնված զտում և ունի պարզեցված վճարման գործընթաց: Հարթակը ներառում է պահեստի կառավարում, պատվերների հետևում և վերլուծական վահանակներ հաճախորդի համար:',
             features: [
               'Հարմարեցվող դիզայն բոլոր սարքերի համար',
@@ -676,6 +677,52 @@ export const languages: Language[] = [
       }
     }
   }
-]
+];
 
-export default languages
+const LanguageSelector: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+      >
+        <Globe className="w-5 h-5" />
+        <span>{language.nativeName}</span>
+        <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute top-full right-0 mt-2 py-2 w-48 bg-white dark:bg-gray-900 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+          >
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => {
+                  setLanguage(lang);
+                  setIsOpen(false);
+                }}
+                className="flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                <span className="mr-2">{lang.flag}</span>
+                <span>{lang.nativeName}</span>
+                {language.code === lang.code && (
+                  <Check className="w-4 h-4 ml-auto" />
+                )}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+export default LanguageSelector;

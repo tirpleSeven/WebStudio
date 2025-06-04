@@ -1,7 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import languages from '../components/LanguageSelector';
-
-type Language = typeof languages[0];
+import { languages, Language } from '../components/LanguageSelector';
 
 interface LanguageContextType {
   language: Language;
