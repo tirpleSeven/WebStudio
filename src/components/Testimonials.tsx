@@ -12,12 +12,29 @@ const Testimonials: React.FC = () => {
   });
   const { language } = useLanguage();
 
+  // Reset activeIndex when language changes to prevent out-of-bounds access
+  React.useEffect(() => {
+    setActiveIndex(0);
+  }, [language]);
+
+  // Ensure we have testimonials data before proceeding
+  const testimonials = language?.content?.testimonials?.items || [];
+  const testimonialsData = language?.content?.testimonials || {};
+
+  // If no testimonials data, return null or a fallback
+  if (testimonials.length === 0) {
+    return null;
+  }
+
+  // Ensure activeIndex is within bounds
+  const safeActiveIndex = Math.min(activeIndex, testimonials.length - 1);
+
   const nextTestimonial = () => {
-    setActiveIndex((prevIndex) => (prevIndex + 1) % language.content.testimonials.items.length);
+    setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
   };
 
   const prevTestimonial = () => {
-    setActiveIndex((prevIndex) => (prevIndex - 1 + language.content.testimonials.items.length) % language.content.testimonials.items.length);
+    setActiveIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
   };
 
   const testimonialImages = [
@@ -43,6 +60,8 @@ const Testimonials: React.FC = () => {
     );
   };
 
+  const currentTestimonial = testimonials[safeActiveIndex];
+
   return (
     <section id="testimonials" className="section bg-gray-50 dark:bg-gray-800">
       <div className="container">
@@ -53,7 +72,7 @@ const Testimonials: React.FC = () => {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
           >
-            {language.content.testimonials.title}
+            {testimonialsData.title || 'Testimonials'}
           </motion.h2>
           <motion.p 
             className="section-subtitle"
@@ -61,7 +80,7 @@ const Testimonials: React.FC = () => {
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            {language.content.testimonials.subtitle}
+            {testimonialsData.subtitle || ''}
           </motion.p>
         </div>
 
@@ -95,8 +114,8 @@ const Testimonials: React.FC = () => {
               <div className="flex flex-col items-center">
                 <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-white dark:border-gray-700 shadow-md mb-6">
                   <img
-                    src={testimonialImages[activeIndex]}
-                    alt={language.content.testimonials.items[activeIndex].name}
+                    src={testimonialImages[safeActiveIndex % testimonialImages.length]}
+                    alt={currentTestimonial?.name || 'Testimonial'}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -105,16 +124,16 @@ const Testimonials: React.FC = () => {
 
                 <blockquote className="mt-6 text-center">
                   <p className="text-gray-600 dark:text-gray-300 text-lg italic leading-relaxed">
-                    "{language.content.testimonials.items[activeIndex].content}"
+                    "{currentTestimonial?.content || ''}"
                   </p>
                 </blockquote>
 
                 <div className="mt-6 text-center">
                   <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    {language.content.testimonials.items[activeIndex].name}
+                    {currentTestimonial?.name || ''}
                   </h4>
                   <p className="text-gray-600 dark:text-gray-400">
-                    {language.content.testimonials.items[activeIndex].role}, {language.content.testimonials.items[activeIndex].company}
+                    {currentTestimonial?.role || ''}{currentTestimonial?.company ? `, ${currentTestimonial.company}` : ''}
                   </p>
                 </div>
               </div>
@@ -122,12 +141,12 @@ const Testimonials: React.FC = () => {
 
             {/* Navigation dots */}
             <div className="flex justify-center mt-8 space-x-2">
-              {language.content.testimonials.items.map((_, index) => (
+              {testimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveIndex(index)}
                   className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                    activeIndex === index
+                    safeActiveIndex === index
                       ? 'bg-primary-600 dark:bg-primary-500'
                       : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
                   }`}
