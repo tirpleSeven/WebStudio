@@ -38,7 +38,7 @@ const FloatingContact: React.FC = () => {
           <AnimatePresence>
             {isOpen && (
               <motion.div
-                className="absolute bottom-16 right-0 mb-4 card p-4 w-64 shadow-soft-lg"
+                className="absolute bottom-16 right-0 mb-4 card p-6 w-64 shadow-soft-lg"
                 initial={{ opacity: 0, y: 20, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -56,11 +56,11 @@ const FloatingContact: React.FC = () => {
                   </a>
                   
                   <a 
-                    href="mailto:contact@webstudio.com" 
+                    href="mailto:contact@coolservices.com" 
                     className="flex items-center p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors text-gray-700 dark:text-gray-200"
                   >
                     <Mail className="h-5 w-5 text-primary-600 dark:text-primary-500 mr-3" />
-                    <span>contact@webstudio.com</span>
+                    <span>contact@coolservices.com</span>
                   </a>
                   
                   <a 

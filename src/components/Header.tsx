@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Menu, X, Globe, BarChart3 } from 'lucide-react';
+import { Menu, X, Globe, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 import LanguageSelector from './LanguageSelector';
@@ -44,8 +44,8 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <a href="#" className="flex items-center gap-2">
-              <BarChart3 className="h-8 w-8 text-primary-600 dark:text-primary-500" />
+            <a href="#" className="flex items-center gap-3">
+              <Zap className="h-8 w-8 text-primary-600 dark:text-primary-500" />
               <span className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">
                 {language.content.header.logo}
               </span>
@@ -58,7 +58,7 @@ const Header: React.FC = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-500 font-medium transition-colors duration-200"
+                className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-500 font-medium transition-colors duration-200 py-2 px-1"
               >
                 {item.name}
               </a>
@@ -72,7 +72,7 @@ const Header: React.FC = () => {
             <LanguageSelector />
             <a 
               href="#contact" 
-              className="btn btn-primary whitespace-nowrap"
+              className="btn btn-primary whitespace-nowrap ml-4"
             >
               {language.content.header.cta}
             </a>
@@ -112,7 +112,7 @@ const Header: React.FC = () => {
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-500 font-medium transition-colors duration-200"
+                  className="block py-3 px-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-500 font-medium transition-colors duration-200"
                 >
                   {item.name}
                 </a>
@@ -123,7 +123,7 @@ const Header: React.FC = () => {
                   <a 
                     href="#contact" 
                     onClick={() => setIsMenuOpen(false)}
-                    className="btn btn-primary"
+                    className="btn btn-primary ml-4"
                   >
                     {language.content.header.cta}
                   </a>

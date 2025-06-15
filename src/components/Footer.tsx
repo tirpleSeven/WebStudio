@@ -1,5 +1,5 @@
 import React from 'react';
-import { BarChart3, ArrowUp } from 'lucide-react';
+import { Zap, ArrowUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Footer: React.FC = () => {
@@ -54,12 +54,12 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <BarChart3 className="h-8 w-8 text-primary-500" />
-              <span className="text-xl font-bold">WebStudio</span>
+            <div className="flex items-center gap-3 mb-6">
+              <Zap className="h-8 w-8 text-primary-500" />
+              <span className="text-xl font-bold">CoolServices</span>
             </div>
-            <p className="text-gray-400 mb-6 max-w-md">
-              We create beautiful, responsive websites that help businesses grow and establish their online presence.
+            <p className="text-gray-400 mb-6 max-w-md leading-relaxed">
+              We create beautiful, responsive websites that help businesses grow and establish their online presence with cutting-edge technology and innovative design solutions.
             </p>
             <div className="flex space-x-4">
               <a 
@@ -102,14 +102,14 @@ const Footer: React.FC = () => {
           </div>
 
           {footerLinks.map((group, idx) => (
-            <div key={idx}>
+            <div key={idx} className="space-y-4">
               <h3 className="text-white font-semibold mb-4">{group.title}</h3>
               <ul className="space-y-3">
                 {group.links.map((link, linkIdx) => (
                   <li key={linkIdx}>
                     <a 
                       href={link.href}
-                      className="text-gray-400 hover:text-primary-500 transition-colors"
+                      className="text-gray-400 hover:text-primary-500 transition-colors leading-relaxed"
                     >
                       {link.name}
                     </a>
@@ -122,7 +122,7 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} WebStudio. All rights reserved.
+            © {new Date().getFullYear()} CoolServices. All rights reserved.
           </p>
           
           <motion.button

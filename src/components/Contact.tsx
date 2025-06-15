@@ -86,8 +86,8 @@ const Contact: React.FC = () => {
                     <Phone className="h-5 w-5 text-primary-600 dark:text-primary-500" />
                   </div>
                   <div className="ml-4">
-                    <h4 className="text-sm font-medium text-gray-900 dark:text-white">Phone</h4>
-                    <p className="mt-1 text-gray-600 dark:text-gray-300">{language.content.contact.info.phone}</p>
+                    <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-1">Phone</h4>
+                    <p className="text-gray-600 dark:text-gray-300">{language.content.contact.info.phone}</p>
                   </div>
                 </div>
                 
@@ -96,8 +96,8 @@ const Contact: React.FC = () => {
                     <Mail className="h-5 w-5 text-primary-600 dark:text-primary-500" />
                   </div>
                   <div className="ml-4">
-                    <h4 className="text-sm font-medium text-gray-900 dark:text-white">Email</h4>
-                    <p className="mt-1 text-gray-600 dark:text-gray-300">{language.content.contact.info.email}</p>
+                    <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-1">Email</h4>
+                    <p className="text-gray-600 dark:text-gray-300">{language.content.contact.info.email}</p>
                   </div>
                 </div>
                 
@@ -106,8 +106,8 @@ const Contact: React.FC = () => {
                     <MapPin className="h-5 w-5 text-primary-600 dark:text-primary-500" />
                   </div>
                   <div className="ml-4">
-                    <h4 className="text-sm font-medium text-gray-900 dark:text-white">Office</h4>
-                    <p className="mt-1 text-gray-600 dark:text-gray-300">{language.content.contact.info.address}</p>
+                    <h4 className="text-sm font-medium text-gray-900 dark:text-white mb-1">Office</h4>
+                    <p className="text-gray-600 dark:text-gray-300">{language.content.contact.info.address}</p>
                   </div>
                 </div>
               </div>
@@ -174,7 +174,7 @@ const Contact: React.FC = () => {
                       placeholder={language.content.contact.form.name}
                       {...register('name', { required: 'Name is required' })}
                     />
-                    {errors.name && <p className="mt-1 text-sm text-error-600">{errors.name.message}</p>}
+                    {errors.name && <p className="mt-2 text-sm text-error-600">{errors.name.message}</p>}
                   </div>
                   
                   <div>
@@ -192,7 +192,7 @@ const Contact: React.FC = () => {
                         }
                       })}
                     />
-                    {errors.email && <p className="mt-1 text-sm text-error-600">{errors.email.message}</p>}
+                    {errors.email && <p className="mt-2 text-sm text-error-600">{errors.email.message}</p>}
                   </div>
                 </div>
                 
@@ -217,7 +217,7 @@ const Contact: React.FC = () => {
                       placeholder={language.content.contact.form.subject}
                       {...register('subject', { required: 'Subject is required' })}
                     />
-                    {errors.subject && <p className="mt-1 text-sm text-error-600">{errors.subject.message}</p>}
+                    {errors.subject && <p className="mt-2 text-sm text-error-600">{errors.subject.message}</p>}
                   </div>
                 </div>
                 
@@ -230,10 +230,10 @@ const Contact: React.FC = () => {
                     placeholder={language.content.contact.form.message}
                     {...register('message', { required: 'Message is required' })}
                   ></textarea>
-                  {errors.message && <p className="mt-1 text-sm text-error-600">{errors.message.message}</p>}
+                  {errors.message && <p className="mt-2 text-sm text-error-600">{errors.message.message}</p>}
                 </div>
                 
-                <div className="flex justify-end">
+                <div className="flex justify-end pt-4">
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
