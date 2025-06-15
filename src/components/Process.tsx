@@ -70,15 +70,15 @@ const Process: React.FC = () => {
               variants={itemVariants}
               className="relative"
             >
-              <div className="card p-6 h-full flex flex-col">
+              <div className="card h-full flex flex-col">
                 <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-primary-600 dark:bg-primary-700 flex items-center justify-center text-white font-bold shadow-lg">
                   {index + 1}
                 </div>
-                <div className="mt-6 mb-4">
+                <div className="mt-8 mb-6">
                   {processIcons[index]}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{step.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{step.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">{step.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{step.description}</p>
               </div>
             </motion.div>
           ))}
@@ -92,7 +92,7 @@ const Process: React.FC = () => {
         >
           <a 
             href="#contact" 
-            className="btn btn-primary"
+            className="btn btn-primary text-lg px-8 py-4"
           >
             Start Your Project
           </a>

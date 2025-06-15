@@ -47,7 +47,7 @@ const Testimonials: React.FC = () => {
 
   const RenderStars = ({ rating }: { rating: number }) => {
     return (
-      <div className="flex">
+      <div className="flex justify-center mb-6">
         {[...Array(5)].map((_, i) => (
           <Star
             key={i}
@@ -91,28 +91,28 @@ const Testimonials: React.FC = () => {
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="card p-6 md:p-8 lg:p-10 shadow-soft-lg">
+          <div className="card shadow-soft-lg">
             <div className="relative">
               {/* Navigation arrows for desktop */}
               <div className="hidden sm:block">
                 <button
                   onClick={prevTestimonial}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 p-2 rounded-full bg-white dark:bg-gray-700 shadow-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 p-3 rounded-full bg-white dark:bg-gray-700 shadow-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
                   aria-label="Previous testimonial"
                 >
                   <ChevronLeft className="h-5 w-5 text-gray-600 dark:text-gray-300" />
                 </button>
                 <button
                   onClick={nextTestimonial}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 p-2 rounded-full bg-white dark:bg-gray-700 shadow-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 p-3 rounded-full bg-white dark:bg-gray-700 shadow-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
                   aria-label="Next testimonial"
                 >
                   <ChevronRight className="h-5 w-5 text-gray-600 dark:text-gray-300" />
                 </button>
               </div>
 
-              <div className="flex flex-col items-center">
-                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-white dark:border-gray-700 shadow-md mb-6">
+              <div className="flex flex-col items-center text-center py-8">
+                <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-white dark:border-gray-700 shadow-md mb-8">
                   <img
                     src={testimonialImages[safeActiveIndex % testimonialImages.length]}
                     alt={currentTestimonial?.name || 'Testimonial'}
@@ -122,13 +122,13 @@ const Testimonials: React.FC = () => {
 
                 <RenderStars rating={5} />
 
-                <blockquote className="mt-6 text-center">
-                  <p className="text-gray-600 dark:text-gray-300 text-lg italic leading-relaxed">
+                <blockquote className="mb-8">
+                  <p className="text-gray-600 dark:text-gray-300 text-lg italic leading-relaxed max-w-3xl">
                     "{currentTestimonial?.content || ''}"
                   </p>
                 </blockquote>
 
-                <div className="mt-6 text-center">
+                <div className="space-y-2">
                   <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
                     {currentTestimonial?.name || ''}
                   </h4>
@@ -140,12 +140,12 @@ const Testimonials: React.FC = () => {
             </div>
 
             {/* Navigation dots */}
-            <div className="flex justify-center mt-8 space-x-2">
+            <div className="flex justify-center pb-4 space-x-3">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveIndex(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                  className={`w-3 h-3 rounded-full transition-colors ${
                     safeActiveIndex === index
                       ? 'bg-primary-600 dark:bg-primary-500'
                       : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
@@ -156,17 +156,17 @@ const Testimonials: React.FC = () => {
             </div>
 
             {/* Mobile navigation buttons */}
-            <div className="mt-6 flex justify-center space-x-4 sm:hidden">
+            <div className="flex justify-center space-x-6 pb-4 sm:hidden">
               <button
                 onClick={prevTestimonial}
-                className="p-2 rounded-full bg-white dark:bg-gray-700 shadow-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                className="p-3 rounded-full bg-white dark:bg-gray-700 shadow-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
                 aria-label="Previous testimonial"
               >
                 <ChevronLeft className="h-5 w-5 text-gray-600 dark:text-gray-300" />
               </button>
               <button
                 onClick={nextTestimonial}
-                className="p-2 rounded-full bg-white dark:bg-gray-700 shadow-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
+                className="p-3 rounded-full bg-white dark:bg-gray-700 shadow-md hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors"
                 aria-label="Next testimonial"
               >
                 <ChevronRight className="h-5 w-5 text-gray-600 dark:text-gray-300" />

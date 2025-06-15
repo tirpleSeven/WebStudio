@@ -116,7 +116,7 @@ const Portfolio: React.FC = () => {
         </div>
 
         <motion.div 
-          className="flex flex-wrap justify-center mb-8 gap-2"
+          className="flex flex-wrap justify-center mb-12 gap-3"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -125,9 +125,9 @@ const Portfolio: React.FC = () => {
             <button
               key={category.key}
               onClick={() => setFilter(category.key)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
+              className={`px-6 py-3 rounded-full text-sm font-medium transition-colors duration-300 ${
                 filter === category.key
-                  ? 'bg-primary-600 text-white'
+                  ? 'bg-primary-600 text-white shadow-md'
                   : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
               }`}
             >
@@ -151,7 +151,7 @@ const Portfolio: React.FC = () => {
               className="group"
             >
               <div 
-                className="card overflow-hidden cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                className="card overflow-hidden cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl p-0"
                 onClick={() => setSelectedProject(index)}
               >
                 <div className="relative overflow-hidden h-60">
@@ -162,8 +162,8 @@ const Portfolio: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end">
                     <div className="p-6">
-                      <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
-                      <p className="text-gray-200 text-sm">{project.description}</p>
+                      <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+                      <p className="text-gray-200 text-sm leading-relaxed">{project.description}</p>
                     </div>
                   </div>
                   <div className="absolute inset-0 bg-primary-600/20 dark:bg-primary-800/20 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
@@ -172,7 +172,7 @@ const Portfolio: React.FC = () => {
                         e.stopPropagation();
                         setSelectedProject(index);
                       }}
-                      className="rounded-full bg-white text-primary-600 p-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
+                      className="rounded-full bg-white text-primary-600 p-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-lg"
                     >
                       <PlusCircle className="h-6 w-6" />
                     </button>
@@ -215,42 +215,42 @@ const Portfolio: React.FC = () => {
                 </div>
                 
                 <div className="p-6 md:p-8">
-                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6">
                     {filteredProjects[selectedProject].title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-6">
+                  <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
                     {filteredProjects[selectedProject].longDescription}
                   </p>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                        {language.content.portfolio.features}
+                      <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                        Key Features
                       </h4>
-                      <ul className="space-y-2">
+                      <ul className="space-y-3">
                         {filteredProjects[selectedProject].features.map((feature, index) => (
                           <li key={index} className="flex items-start">
-                            <Check className="h-5 w-5 text-primary-600 dark:text-primary-500 mr-2 flex-shrink-0 mt-0.5" />
-                            <span className="text-gray-600 dark:text-gray-300">{feature}</span>
+                            <Check className="h-5 w-5 text-primary-600 dark:text-primary-500 mr-3 flex-shrink-0 mt-0.5" />
+                            <span className="text-gray-600 dark:text-gray-300 leading-relaxed">{feature}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                   </div>
                   
-                  <div className="mt-6 flex justify-end">
+                  <div className="flex justify-end gap-4">
                     <button
                       onClick={() => setSelectedProject(null)}
-                      className="btn btn-outline mr-3"
+                      className="btn btn-outline"
                     >
-                      {language.content.portfolio.close}
+                      Close
                     </button>
                     <a 
                       href="#contact" 
                       onClick={() => setSelectedProject(null)}
                       className="btn btn-primary"
                     >
-                      {language.content.portfolio.getStarted}
+                      Get Started
                     </a>
                   </div>
                 </div>

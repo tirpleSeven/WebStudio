@@ -69,20 +69,20 @@ const Services: React.FC = () => {
             <motion.div 
               key={index}
               variants={itemVariants}
-              className="card card-hover p-6 flex flex-col"
+              className="card card-hover flex flex-col"
               onClick={() => setActiveService(index)}
             >
-              <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full w-fit mb-5">
+              <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full w-fit mb-6">
                 {serviceIcons[index]}
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{service.title}</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow">{service.description}</p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">{service.title}</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6 flex-grow leading-relaxed">{service.description}</p>
               <button
                 onClick={() => setActiveService(index)}
                 className="flex items-center text-primary-600 dark:text-primary-500 hover:text-primary-700 dark:hover:text-primary-400 font-medium transition-colors mt-auto"
               >
                 Learn More 
-                <Plus className="h-4 w-4 ml-1" />
+                <Plus className="h-4 w-4 ml-2" />
               </button>
             </motion.div>
           ))}
@@ -98,7 +98,7 @@ const Services: React.FC = () => {
               className="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
             >
               <div className="p-6 md:p-8">
-                <div className="flex justify-between items-start mb-6">
+                <div className="flex justify-between items-start mb-8">
                   <div className="flex items-center">
                     <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-full mr-4">
                       {serviceIcons[activeService]}
@@ -109,7 +109,7 @@ const Services: React.FC = () => {
                   </div>
                   <button 
                     onClick={() => setActiveService(null)}
-                    className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                    className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 p-2"
                   >
                     <span className="sr-only">Close</span>
                     <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -118,24 +118,24 @@ const Services: React.FC = () => {
                   </button>
                 </div>
                 
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
                   {language.content.services.items[activeService].description}
                 </p>
                 
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">What We Offer:</h4>
-                <ul className="space-y-3 mb-6">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-6">What We Offer:</h4>
+                <ul className="space-y-4 mb-8">
                   {language.content.services.items[activeService].features.map((feature, index) => (
                     <li key={index} className="flex items-start">
-                      <Check className="h-5 w-5 text-primary-600 dark:text-primary-500 mr-2 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-600 dark:text-gray-300">{feature}</span>
+                      <Check className="h-5 w-5 text-primary-600 dark:text-primary-500 mr-3 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-600 dark:text-gray-300 leading-relaxed">{feature}</span>
                     </li>
                   ))}
                 </ul>
                 
-                <div className="mt-8 flex justify-end">
+                <div className="flex justify-end gap-4">
                   <button
                     onClick={() => setActiveService(null)}
-                    className="btn btn-outline mr-3"
+                    className="btn btn-outline"
                   >
                     Close
                   </button>

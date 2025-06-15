@@ -40,36 +40,36 @@ const Hero: React.FC = () => {
           initial="hidden"
           animate="visible"
         >
-          <motion.div variants={itemVariants}>
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/40 text-primary-800 dark:text-primary-300">
+          <motion.div variants={itemVariants} className="mb-8">
+            <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-primary-100 dark:bg-primary-900/40 text-primary-800 dark:text-primary-300">
               Professional Web Development
             </span>
           </motion.div>
           
           <motion.h1 
             variants={itemVariants}
-            className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white tracking-tight"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white tracking-tight mb-8"
           >
             <span className="text-primary-600 dark:text-primary-500">{language.content.hero.title}</span>
           </motion.h1>
           
           <motion.p 
             variants={itemVariants}
-            className="mt-6 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+            className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed"
           >
             {language.content.hero.subtitle}
           </motion.p>
           
           <motion.div 
             variants={itemVariants}
-            className="mt-10 flex flex-col sm:flex-row justify-center gap-4"
+            className="flex flex-col sm:flex-row justify-center gap-6"
           >
             <a 
               href="#portfolio" 
               className="btn btn-primary text-base sm:text-lg px-8 py-4"
             >
               {language.content.hero.cta.primary}
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="h-5 w-5" />
             </a>
             <a 
               href="#services" 

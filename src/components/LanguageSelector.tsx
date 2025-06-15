@@ -107,7 +107,7 @@ export const languages: Language[] = [
     flag: '🇺🇸',
     content: {
       header: {
-        logo: 'WebStudio',
+        logo: 'CoolServices',
         nav: {
           home: 'Home',
           services: 'Services',
@@ -297,7 +297,7 @@ export const languages: Language[] = [
         subtitle: 'Have a project in mind? Let\'s discuss how we can help',
         info: {
           phone: '(123) 456-7890',
-          email: 'contact@webstudio.com',
+          email: 'contact@coolservices.com',
           address: '123 Web Street, San Francisco, CA 94103'
         },
         form: {
@@ -322,7 +322,7 @@ export const languages: Language[] = [
     flag: '🇷🇺',
     content: {
       header: {
-        logo: 'WebStudio',
+        logo: 'CoolServices',
         nav: {
           home: 'Главная',
           services: 'Услуги',
@@ -500,7 +500,7 @@ export const languages: Language[] = [
         subtitle: 'Есть проект? Давайте обсудим, как мы можем помочь',
         info: {
           phone: '(123) 456-7890',
-          email: 'contact@webstudio.com',
+          email: 'contact@coolservices.com',
           address: '123 Web Street, Сан-Франциско, CA 94103'
         },
         form: {
@@ -525,7 +525,7 @@ export const languages: Language[] = [
     flag: '🇦🇲',
     content: {
       header: {
-        logo: 'WebStudio',
+        logo: 'CoolServices',
         nav: {
           home: 'Գլխավոր',
           services: 'Ծառայություններ',
@@ -703,7 +703,7 @@ export const languages: Language[] = [
         subtitle: 'Ունե՞ք նախագիծ մտքում: Եկեք քննարկենք, թե ինչպես կարող ենք օգնել',
         info: {
           phone: '(123) 456-7890',
-          email: 'contact@webstudio.com',
+          email: 'contact@coolservices.com',
           address: '123 Web Street, Սան Ֆրանցիսկո, CA 94103'
         },
         form: {
@@ -734,7 +734,7 @@ const LanguageSelector: React.FC = () => {
         className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
       >
         <Globe className="w-5 h-5" />
-        <span>{language.nativeName}</span>
+        <span className="font-medium">{language.nativeName}</span>
         <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
@@ -753,12 +753,12 @@ const LanguageSelector: React.FC = () => {
                   setLanguage(lang);
                   setIsOpen(false);
                 }}
-                className="flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="flex items-center w-full px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
-                <span className="mr-2">{lang.flag}</span>
-                <span>{lang.nativeName}</span>
+                <span className="mr-3 text-lg">{lang.flag}</span>
+                <span className="font-medium">{lang.nativeName}</span>
                 {language.code === lang.code && (
-                  <Check className="w-4 h-4 ml-auto" />
+                  <Check className="w-4 h-4 ml-auto text-primary-600 dark:text-primary-500" />
                 )}
               </button>
             ))}
